@@ -45,6 +45,8 @@ app.get('/', (req: Request, res: Response) => {
   });
 });
 
+//comint prueba
+
 // Manejo de errores global
 app.use((err: Error, req: Request, res: Response, next: Function) => {
   console.error(err.stack);
