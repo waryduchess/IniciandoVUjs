@@ -59,4 +59,5 @@ app.use((err: Error, req: Request, res: Response, next: Function) => {
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en puerto ${PORT}`);
   console.log(`📝 API documentación: http://localhost:${PORT}`);
+  console.log(`Amor si lees esto me debes un helado :)`);
 });
