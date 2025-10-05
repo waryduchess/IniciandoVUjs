@@ -1,6 +1,14 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { pool } from './config/database';
+import empleadosRoutes from './routes/empleados.routes';
+import sizesRoutes from './routes/sizes.routes';
+// Definición de interfaces
+interface ApiResponse {
+  message: string;
+  data?: any;
+}
 
 dotenv.config();
 
@@ -11,37 +19,42 @@ const PORT: number = parseInt(process.env.PORT || '3000');
 app.use(cors());
 app.use(express.json());
 
-// Tipos personalizados
-interface ApiResponse {
-  message: string;
-  data?: any;
-}
+// Rutas
+app.use('/api/empleados', empleadosRoutes);
+
 // Ruta raíz
 app.get('/', (req: Request, res: Response) => {
   res.json({ 
     message: 'API funcionando correctamente',
     endpoints: [
-      'GET /api/test',
-      'GET /api/users/:id'
+      'GET /api/empleados',
+      'GET /api/empleados/:id'
     ]
   });
 });
-// Rutas
-app.get('/api/test', (req: Request, res: Response<ApiResponse>) => {
+app.use('/api/size', sizesRoutes);
+
+// Ruta raíz
+app.get('/', (req: Request, res: Response) => {
   res.json({ 
-    message: '¡Hola desde Express con TypeScript!',
-    data: { timestamp: new Date().toISOString() }
+    message: 'API funcionando correctamente',
+    endpoints: [
+      'GET /api/size',
+      'GET /api/size/:id'
+    ]
   });
 });
 
-app.get('/api/users/:id', (req: Request, res: Response<ApiResponse>) => {
-  const userId = parseInt(req.params.id);
-  res.json({ 
-    message: 'Usuario encontrado',
-    data: { id: userId, name: 'Usuario de prueba' }
+// Manejo de errores global
+app.use((err: Error, req: Request, res: Response, next: Function) => {
+  console.error(err.stack);
+  res.status(500).json({
+    message: 'Algo salió mal!',
+    error: err.message
   });
 });
 
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en puerto ${PORT}`);
+  console.log(`📝 API documentación: http://localhost:${PORT}`);
 });
