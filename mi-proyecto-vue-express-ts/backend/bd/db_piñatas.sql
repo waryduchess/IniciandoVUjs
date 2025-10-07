@@ -1,7 +1,11 @@
 CREATE TABLE `empleados`(
     `id_empleado` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `nombre_empleado` VARCHAR(255) NOT NULL,
-    `apellido_empleado` VARCHAR(255) NOT NULL
+    `apellido_empleado` VARCHAR(255) NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
+    `correo` VARCHAR(255) NOT NULL
+       
+    
 );
 CREATE TABLE `sizes`(
     `id_size` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -16,7 +20,7 @@ CREATE TABLE `productos`(
 );
 CREATE TABLE `picos`(
     `id_pico` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `numero_picos` VARCHAR(255) NOT NULL
+    `numero_picos` INT NOT NULL
 );
 CREATE TABLE `movimientos`(
     `id_movimiento` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
