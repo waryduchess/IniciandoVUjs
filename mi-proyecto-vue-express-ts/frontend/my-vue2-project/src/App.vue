@@ -1,4 +1,5 @@
 // filepath: /src/App.vue
+ The root component of the Vue.js application
 <template>
   <div id="app">
     <nav>
@@ -34,3 +35,4 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
+ 

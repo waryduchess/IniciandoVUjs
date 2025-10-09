@@ -4,6 +4,7 @@ import HomeView from '../views/home.vue'
 import LoginView from '../views/login.vue'
 import RegisterView from '../views/register.vue'
 
+
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
